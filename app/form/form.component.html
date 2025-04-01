@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form class="row g-3" [formGroup]="create">
+        <div class="col-md-6">
+            <label>Name :</label>
+            <input type="text" class="form-control" name="name" formControlName="name">
+        </div>
+        <div class="col-md-6">
+            <label>Email :</label>
+            <input type="email" class="form-control" name="email" formControlName="email">
+        </div>
+        <div class="col-md-6">
+            <label>Phone No. :</label>
+            <input type="number" class="form-control" name="phone" min="1" formControlName="phone">
+        </div>
+        <div class="col-md-6">
+            <label>Address :</label>
+            <textarea class="form-control" name="address" formControlName="address" rows="2"></textarea>
+        </div>
+        <div class="col-md-6">
+            <label>Gender :</label>
+            <select id="inputGender" name="gender" class="form-select" (change)="updateGender($event)" multiple>
+                <option>Choose...</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+            </select>
+        </div>
+            <div class="col-md-6">
+                <label>Designation Master :</label>
+                <select name=designation class="form-select" formControlName="designation">
+                    <option *ngFor="let item of data" value="{{item.code}}">
+                        {{ item.name }}
+                        <!-- {{ item.code }} -->
+                    </option>
+                </select>
+            </div>
+        <div class="pt-2" id="checkbox" (change)="updateHobbies($event)">
+            <label class="Hobbies">Hobbies :</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="hobbies" value="Gaming">
+                <label class="form-check-label" for="inlineCheckbox1">Gaming</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="hobbies" value="Reading">
+                <label class="form-check-label" for="inlineCheckbox2">Reading</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="hobbies" value="Singing">
+                <label class="form-check-label" for="inlineCheckbox3">Singing</label>
+            </div>
+        </div>
+        <div class="pt-2">
+            <label class="language">Language:</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="language" id="inlineRadio1"
+                    formControlName="language" value="Technical">
+                <label class="form-check-label" for="inlineRadio1">Technical</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="language" id="inlineRadio2"
+                    formControlName="language" value="Non-Technical">
+                <label class="form-check-label" for="inlineRadio2">Non-Technical</label>
+            </div>
+        </div>
+        <div class="pt-2">
+            <input type="file" name="file" class="form-control" formControlName="file">
+        </div>
+
+        <div class=" pt-3 text-center">
+            <button type="submit" class="btn btn-outline-primary" (click)="submit()" [disabled]="create.invalid">Submit</button>
+        </div>
+    </form>
+</body>
+
+</html>
